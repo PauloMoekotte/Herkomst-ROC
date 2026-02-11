@@ -17,11 +17,12 @@ def load_initial_data(files):
     all_data = []
     for f in files:
         try:
-            # DUO bestanden gebruiken vaak ';' als delimiter
-            df = pd.read_csv(f, sep='None', encoding='utf-8')
+            # DUO bestanden gebruiken vaak een puntkomma (;) of komma (,) afhankelijk van de export
+            # We proberen eerst met sep=None om het automatisch te detecteren
+            df = pd.read_csv(file, sep=None, engine='python')
             all_data.append(df)
         except Exception as e:
-            st.error(f"Fout bij laden van {f}: {e}")
+            st.error(f"Fout bij laden van {file.name}: {e}")    
     
     if all_data:
         combined = pd.concat(all_data, ignore_index=True)
