@@ -18,7 +18,7 @@ def load_initial_data(files):
     for f in files:
         try:
             # DUO bestanden gebruiken vaak ';' als delimiter
-            df = pd.read_csv(f, sep=';', encoding='utf-8')
+            df = pd.read_csv(f, sep='None', encoding='utf-8')
             all_data.append(df)
         except Exception as e:
             st.error(f"Fout bij laden van {f}: {e}")
